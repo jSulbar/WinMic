@@ -4,38 +4,47 @@ import pyaudio
 from threading import Thread
 import sounddevice as sd
 
-def startRecording():
-    PORT = 12358
+class NetworkMic():
+    def __init__(self, port, audioConfig):
+        self.port = port
+        self.config = audioConfig
+        self.pyAudio = pyaudio.PyAudio()
 
-    p = pyaudio.PyAudio()
-    FORMAT = pyaudio.paInt16
-    CHANNELS = 1
-    RATE = 44100
-    stream = p.open(format=FORMAT,
-                    channels=CHANNELS,
-                    rate=RATE,
-                    output=True)
+    def startSocket(self):
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.socket.bind(('', self.port))
 
-    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-        s.bind(('', PORT))
-        print(f"Listening on {PORT}")
+    def audioStream(self):
+        stream = self.pyAudio.open(
+            format=self.config["format"],
+            channels=self.config["channels"],
+            rate=self.config["rate"],
+            output=True)
+        return stream
+    
+    def startOutput(self):
+        self.startSocket()
+        stream = self.audioStream()
         while True:
-            data, addr = s.recvfrom(65535)
-            stream.write(data)
+            stream.write(self.socket.recv(65535))
 
-class Example(wx.Frame):
+class MyFrame(wx.Frame):
     def __init__(self, *args, **kw):
-        super(Example, self).__init__(*args, **kw)
-        self.t = Thread(target=startRecording, daemon=True)
+        super(MyFrame, self).__init__(*args, **kw)
+        self.mic = NetworkMic(12358, { "format":pyaudio.paInt16, "channels":1, "rate":44100 })
+        self.t = Thread(target=self.mic.startOutput, daemon=True)
         self.InitUI()
 
     def InitUI(self):
+        self.SetTitle('WinMic')
+        self.SetSize((350, 250))
+        self.Centre()
+        self.addWidgets()
+        
+    def addWidgets(self):
         pnl = wx.Panel(self)
         startButton = wx.Button(pnl, label='Start', pos=(20, 40))
         startButton.Bind(wx.EVT_BUTTON, self.startThread)
-        self.SetSize((350, 250))
-        self.SetTitle('wx.Button')
-        self.Centre()
 
     def startThread(self, e):
         self.t.start()
@@ -46,7 +55,7 @@ class Example(wx.Frame):
 
 def main():
     app = wx.App()
-    ex = Example(None)
+    ex = MyFrame(None)
     ex.Show()
     app.MainLoop()
 
