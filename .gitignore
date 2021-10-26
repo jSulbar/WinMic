@@ -84,6 +84,6 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-include/
-.vscode
+headers/
+.vscode/
 *.exe
