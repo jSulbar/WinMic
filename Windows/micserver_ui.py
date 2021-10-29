@@ -1,5 +1,4 @@
 import wx
-import socket
 
 
 # Custom sizer to help manage and search for elements
@@ -12,6 +11,8 @@ class ChildSizer(wx.BoxSizer):
 
     # Adds control to list, then to wx.boxsizer instance
     def add_control(self, control, name, *args):
+        if name in self.sizer_list.keys():
+            raise Exception('A control with the given name already exists')
         self.sizer_list[name] = control
         self.Add(control, *args)
 
@@ -76,12 +77,10 @@ class ParentSizer(wx.BoxSizer):
             raise TypeError('Argument must be dict in the format { "controlname":control }')
 
 
-# After learning html it feels weird to put the UI design WITH
-# the program... ah well.
 class MicWindow(wx.Frame):
     def __init__(self, *args, **kw):
         # Make window unresizeable
-        wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
+        wx.Frame.__init__(self, None,style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
         self.sizer = ParentSizer(wx.VERTICAL)
         self.InitUI()
 
@@ -108,11 +107,11 @@ class MicWindow(wx.Frame):
         ip_label = wx.StaticText(pnl, 
         label="Your IPv4 address: [address goes here]")
 
-        self.sizer.add_control(ip_label, 'ip_label', 
+        self.sizer.new_control(ip_label, 'ip_label', 
         control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
         sizer_options=(1, wx.ALL, 5))
 
-        self.sizer.add_controls({ 
+        self.sizer.new_controls_row({ 
             "start_button":start_button,
             "stop_button":stop_button
         }, control_options=(1, wx.ALIGN_BOTTOM | wx.ALL, 5),
