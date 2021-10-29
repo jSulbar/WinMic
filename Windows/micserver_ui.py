@@ -2,47 +2,78 @@ import wx
 import socket
 
 
-# 
-class MySizer:
+# Custom sizer to help manage and search for elements
+class ChildSizer(wx.BoxSizer):
     def __init__(self, sizer = wx.HORIZONTAL) -> None:
-        self.sizer = wx.BoxSizer(sizer)
-        self.control_list = {}
+        super().__init__(sizer)
+        # Dict with every control that has been added
+        # To this sizer
+        self.sizer_list = {}
 
-    def add_control(self, widget, name, *args):
-        self.control_list[name] = widget
-        self.sizer.Add(widget, *args)
+    # Adds control to list, then to wx.boxsizer instance
+    def add_control(self, control, name, *args):
+        self.sizer_list[name] = control
+        self.Add(control, *args)
 
+    # Returns the control with the given name
     def get_control(self, name):
-        return self.control_list[name]
-
-    def add_sizer(self, sizer, name):
-        self.control_list[name] = sizer
+        return self.sizer_list[name]
 
 
-# A parent sizer class to hold other sizers.
+# A parent sizer class to hold other sizers,
+# and to make it less repetitive to add controls
 class ParentSizer(wx.BoxSizer):
     def __init__(self, sizer = wx.HORIZONTAL) -> None:
         super().__init__(sizer)
-        self.control_list = []
+        # List of child sizers to keep track of
+        self.sizer_list = []
 
+    # Add child to this sizer
     def add_sizer(self, sizer, *args):
-        if type(sizer) is not MySizer:
-            raise TypeError('Argument is not an instance of MySizer')
-        self.control_list.append(sizer)
-        self.Add(sizer.sizer, *args)
+        # Only accept ChildSizers
+        if type(sizer) is not ChildSizer:
+            raise TypeError('Argument is not an instance of ChildSizer')
 
-    # Search inside this sizer for a control
+        # Add to list
+        self.sizer_list.append(sizer)
+        self.Add(sizer, *args)
+
+    # Search inside child sizers for a control
     # with the given name
     def control_by_name(self, name):
-        for sizer in self.control_list:
-            for key in sizer.control_list:
+        for childsizer in self.sizer_list:
+            for key in childsizer.control_list:
                 if key == name:
-                    return sizer.control_list[name]
+                    return childsizer.control_list[name]
 
-    # Bulk add sizers, all with the same args
-    def add_sizers(self, proportion, flag, border, *sizers):
+    # Create empty sizers in bulk
+    def bulk_add_sizers(self, proportion, flag, border, *sizers):
         for sizer in sizers:
             self.add_sizer(sizer, proportion, flag, border)
+
+    # Add a new control
+    def new_control(self, control, name, *, sizer_options, control_options):
+        if isinstance(control, wx.Control):
+            # Create a new sizer for it
+            new_sizer = ChildSizer(wx.HORIZONTAL)
+            new_sizer.add_control(control, name, *control_options)
+
+            self.add_sizer(new_sizer, *sizer_options)
+        else:
+            raise TypeError('Argument must be a wxWidgets control!')
+
+    # Add multiple controls and put them inside a single sizer
+    # Takes a dict formatted as { "controlname":control }
+    def new_controls_row(self, controls, *, sizer_options, control_options):
+        if type(controls) is dict:
+            new_sizer = ChildSizer(wx.HORIZONTAL)
+
+            for key in controls:
+                new_sizer.add_control(controls[key], key, *control_options)
+
+            self.add_sizer(new_sizer, *sizer_options)
+        else:
+            raise TypeError('Argument must be dict in the format { "controlname":control }')
 
 
 # After learning html it feels weird to put the UI design WITH
@@ -51,7 +82,7 @@ class MicWindow(wx.Frame):
     def __init__(self, *args, **kw):
         # Make window unresizeable
         wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
-        self.v_sizer = ParentSizer(wx.VERTICAL)
+        self.sizer = ParentSizer(wx.VERTICAL)
         self.InitUI()
 
     def InitUI(self):
@@ -67,11 +98,6 @@ class MicWindow(wx.Frame):
         # Create a panel container to put controls in
         pnl = wx.Panel(self)
 
-        # Create grid for UI (or closest thing anyway)
-        # 1 column, 2 rows
-        h_sizer = MySizer(wx.HORIZONTAL)
-        h_sizer2 = MySizer(wx.HORIZONTAL)
-
         # Create stop/start buttons for mic
         # stop button is initially disabled
         start_button = wx.Button(pnl, label='Start mic')
@@ -79,37 +105,19 @@ class MicWindow(wx.Frame):
         stop_button.Disable()
 
         # Make a label displaying this pc's ipv4 address
-        ip_addr = socket.gethostbyname(socket.gethostname())
         ip_label = wx.StaticText(pnl, 
-        label=f"Your IPv4 address: {ip_addr}")
+        label="Your IPv4 address: [address goes here]")
 
-        # add function to a button when it's clicked
-        start_button.Bind(wx.EVT_BUTTON, self.start_mic)
-        stop_button.Bind(wx.EVT_BUTTON, self.stop_mic)
+        self.sizer.add_control(ip_label, 'ip_label', 
+        control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
+        sizer_options=(1, wx.ALL, 5))
 
-        # Add ip label to first row, stop/start buttons to second
-        # Give all elements a border of 5 pixels
-        h_sizer.add_control(ip_label, 'ip_label', 0, wx.ALIGN_CENTER | wx.ALL, 5)
-        h_sizer2.add_control(start_button, 'start_button', 1, wx.ALIGN_BOTTOM | wx.ALL, 5)
-        h_sizer2.add_control(stop_button, 'stop_button', 1, wx.ALIGN_BOTTOM | wx.ALL, 5)
+        self.sizer.add_controls({ 
+            "start_button":start_button,
+            "stop_button":stop_button
+        }, control_options=(1, wx.ALIGN_BOTTOM | wx.ALL, 5),
+        sizer_options=(1, wx.EXPAND, 5))
 
-        # Insert the rows into the column
-        self.v_sizer.add_sizers(1, wx.EXPAND, 5, h_sizer, h_sizer2)
-
-        # Insert the column into the panel
-        self.v_sizer.SetSizeHints(pnl)
-        pnl.SetSizer(self.v_sizer)
-
-    def start_mic(self, e):
-        start_button = e.GetEventObject()
-        stop_button = self.v_sizer.control_by_name('stop_button')
-
-        start_button.Disable()
-        stop_button.Enable()
-
-    def stop_mic(self, e):
-        stop_button = e.GetEventObject()
-        start_button = self.v_sizer.control_by_name('start_button')
-
-        start_button.Enable()
-        stop_button.Disable()
+        # Bind sizer to panel
+        self.sizer.SetSizeHints(pnl)
+        pnl.SetSizer(self.sizer)
