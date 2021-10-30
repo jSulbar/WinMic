@@ -12,6 +12,9 @@ class DatagramSocket:
     def receive_buffer(self, bufsize = 32768):
         return self.socket.recv(bufsize)
 
+    # Really hackish way of getting local ip.
+    # https://stackoverflow.com/questions/166506/
     def get_local_ip(self):
-        hostname = socket.gethostname()
-        return socket.gethostbyname(hostname)
+        temp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        temp_socket.connect(('8.8.8.8', 1))
+        return temp_socket.getsockname()[0]
