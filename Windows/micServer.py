@@ -1,20 +1,4 @@
 import socket
-import pyaudio
-
-
-class AudioStream:
-    def __init__(self, **kwargs) -> None:
-        self.format = kwargs['format']
-        self.channels = kwargs['channels']
-        self.sample_rate = kwargs['sample_rate']
-        self.pa_stream = None
-
-    def open_stream(self):
-        pa = pyaudio.PyAudio()
-        self.pa_stream = pa.open(self.sample_rate, self.channels, self.format, output=True)
-
-    def stream_write(self, data):
-        self.pa_stream.write(data)
 
 
 class DatagramSocket:
@@ -28,7 +12,6 @@ class DatagramSocket:
     def receive_buffer(self, bufsize = 32768):
         return self.socket.recv(bufsize)
 
-
-class NetworkMic(DatagramSocket, AudioStream):
-    def __init__(self, port) -> None:
-        super(DatagramSocket).__init__(port)
+    def get_local_ip(self):
+        hostname = socket.gethostname()
+        return socket.gethostbyname(hostname)
