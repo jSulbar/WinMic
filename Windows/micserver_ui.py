@@ -7,18 +7,18 @@ class ChildSizer(wx.BoxSizer):
         super().__init__(sizer)
         # Dict with every control that has been added
         # To this sizer
-        self.sizer_list = {}
+        self.control_list = {}
 
     # Adds control to list, then to wx.boxsizer instance
     def add_control(self, control, name, *args):
-        if name in self.sizer_list.keys():
+        if name in self.control_list.keys():
             raise Exception('A control with the given name already exists')
-        self.sizer_list[name] = control
+        self.control_list[name] = control
         self.Add(control, *args)
 
     # Returns the control with the given name
     def get_control(self, name):
-        return self.sizer_list[name]
+        return self.control_list[name]
 
 
 # A parent sizer class to hold other sizers,
