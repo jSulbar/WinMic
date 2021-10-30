@@ -78,22 +78,41 @@ class ParentSizer(wx.BoxSizer):
 
 
 class MicWindow(wx.Frame):
-    def __init__(self, *args, **kw):
+    def __init__(self):
         # Make window unresizeable
         wx.Frame.__init__(self, None,style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
         self.sizer = ParentSizer(wx.VERTICAL)
-        self.InitUI()
 
-    def InitUI(self):
+    def init_gui(self):
         # Set window title and center
         self.SetTitle('WinMic')
         self.Centre()
 
         # Add controls to frame
-        self.addWidgets()
+        self.add_controls()
+
+    # Set the IP to display
+    def set_ip(self, ipaddr):
+        self.ipaddr = ipaddr
+
+    def toggle_buttons(self):
+        # Get buttons by name
+        start_button = self.sizer.control_by_name('start_button')
+        stop_button = self.sizer.control_by_name('stop_button')
+
+        # Toggle start/stop buttons
+        if start_button.Disable():
+            stop_button.Enable()
+        elif stop_button.Disable():
+            start_button.Enable()
+
+    # Bind a control to an event
+    def bind_control(self, name, event, callback):
+        control = self.sizer.control_by_name(name)
+        control.Bind(event, callback)
         
     # Function to add controls to window
-    def addWidgets(self):
+    def add_controls(self):
         # Create a panel container to put controls in
         pnl = wx.Panel(self)
 
@@ -105,7 +124,7 @@ class MicWindow(wx.Frame):
 
         # Make a label displaying this pc's ipv4 address
         ip_label = wx.StaticText(pnl, 
-        label="Your IPv4 address: [address goes here]")
+        label=f"Your IPv4 address: {self.ipaddr}")
 
         self.sizer.new_control(ip_label, 'ip_label', 
         control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
