@@ -85,22 +85,33 @@ class MicWindow(wx.Frame):
         self.sizer = ParentSizer(wx.VERTICAL)
 
         # Locale object for multi-language support
-        # Uses system's default language
         self.locale = wx.Locale(wx.LANGUAGE_DEFAULT)
 
-        # Set translation folder and filenames
+        # Folder and filename for translations
         wx.Locale.AddCatalogLookupPathPrefix('locale')
         self.locale.AddCatalog('i18n')
 
     def init_gui(self):
         # Set window title and center
         self.SetTitle('WinMic')
+        self.SetSize(((320, 160)))
         self.Centre()
 
     # Shorthand function 
     # so i don't have to write micwindow.sizer.control_by_name
     def control_by_name(self, name):
         return self.sizer.control_by_name(name)
+
+    def toggle_buttons(self):
+        # Get buttons by name
+        start_button = self.sizer.control_by_name('start_button')
+        stop_button = self.sizer.control_by_name('stop_button')
+
+        # Toggle start/stop buttons
+        if start_button.Disable():
+            stop_button.Enable()
+        elif stop_button.Disable():
+            start_button.Enable()
 
     # Bind a control to an event
     def bind_control(self, name, event, callback):
@@ -124,11 +135,11 @@ class MicWindow(wx.Frame):
         # Make a label that will display
         # the pc's IPv4 address
         ip_label = wx.StaticText(pnl, 
-        label=_('Your IPv4 address is '))
+        label=_('Your IPv4 address is: '))
 
         self.sizer.new_control(ip_label, 'ip_label', 
         control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
-        sizer_options=(1, wx.ALL, 5))
+        sizer_options=(1, wx.ALL | wx.ALIGN_CENTER, 5))
 
         self.sizer.new_controls_row({ 
             "start_button":start_button,
