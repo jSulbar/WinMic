@@ -92,6 +92,11 @@ class MicWindow(wx.Frame):
     def set_ip(self, ipaddr):
         self.ipaddr = ipaddr
 
+    # Shorthand function 
+    # so i don't have to write micwindow.sizer.control_by_name
+    def control_by_name(self, name):
+        return self.sizer.control_by_name(name)
+
     def toggle_buttons(self):
         # Get buttons by name
         start_button = self.sizer.control_by_name('start_button')
