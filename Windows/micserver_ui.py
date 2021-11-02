@@ -88,9 +88,6 @@ class MicWindow(wx.Frame):
         self.SetTitle('WinMic')
         self.Centre()
 
-        # Add controls to frame
-        self.add_controls()
-
     # Set the IP to display
     def set_ip(self, ipaddr):
         self.ipaddr = ipaddr
