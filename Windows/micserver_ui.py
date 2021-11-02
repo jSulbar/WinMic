@@ -1,4 +1,5 @@
 import wx
+import locale
 
 
 # Custom sizer to help manage and search for elements
@@ -80,17 +81,20 @@ class ParentSizer(wx.BoxSizer):
 class MicWindow(wx.Frame):
     def __init__(self):
         # Make window unresizeable
-        wx.Frame.__init__(self, None,style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
+        wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
         self.sizer = ParentSizer(wx.VERTICAL)
+
+        # Locale object for multi-language support
+        self.locale = wx.Locale(wx.LANGUAGE_DEFAULT)
+
+        # Set translation folder and filenames
+        wx.Locale.AddCatalogLookupPathPrefix('locale')
+        self.locale.AddCatalog('i18n')
 
     def init_gui(self):
         # Set window title and center
         self.SetTitle('WinMic')
         self.Centre()
-
-    # Set the IP to display
-    def set_ip(self, ipaddr):
-        self.ipaddr = ipaddr
 
     # Shorthand function 
     # so i don't have to write micwindow.sizer.control_by_name
@@ -118,15 +122,19 @@ class MicWindow(wx.Frame):
         # Create a panel container to put controls in
         pnl = wx.Panel(self)
 
+        # Needs to be an underscore for gettext to parse it.
+        _ = wx.GetTranslation
+
         # Create stop/start buttons for mic
         # stop button is initially disabled
-        start_button = wx.Button(pnl, label='Start mic')
-        stop_button = wx.Button(pnl, label='Stop mic')
+        start_button = wx.Button(pnl, label=_('Start recording'))
+        stop_button = wx.Button(pnl, label=_('Stop recording'))
         stop_button.Disable()
 
-        # Make a label displaying this pc's ipv4 address
+        # Make a label that will display
+        # the pc's IPv4 address
         ip_label = wx.StaticText(pnl, 
-        label=f"Your IPv4 address: {self.ipaddr}")
+        label=_('Your IPv4 address is '))
 
         self.sizer.new_control(ip_label, 'ip_label', 
         control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
