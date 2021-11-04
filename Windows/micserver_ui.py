@@ -1,5 +1,5 @@
 import wx
-import locale
+import wx.adv
 
 
 # Custom sizer to help manage and search for elements
@@ -78,14 +78,44 @@ class ParentSizer(wx.BoxSizer):
             raise TypeError('Argument must be dict in the format { "controlname":control }')
 
 
+# Class for the system tray icon of this app
+class TrayIcon(wx.adv.TaskBarIcon):
+    def __init__(self, frame):
+        wx.adv.TaskBarIcon.__init__(self)
+        self.frame = frame
+        self.icon = wx.Icon()
+
+        # Show micWindow on left click, display options on right
+        self.SetIcon(self.icon, 'WinMic')
+        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.show_window)
+        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.options)
+
+    def show_window(self, event):
+        self.frame.Show()
+
+    # For now, only add an exit option
+    def options(self, event):
+        _ = wx.GetTranslation
+
+        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_UP, self.OnPopup)
+        self.menu = wx.Menu()
+        self.menu.Append(wx.ID_EXIT, _('Exit'))
+    
+        
 class MicWindow(wx.Frame):
     def __init__(self):
         # Make window unresizeable
         wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
         self.sizer = ParentSizer(wx.VERTICAL)
 
+        # System tray icon
+        self.tray_icon = TrayIcon(self)
+
         # Locale object for multi-language support
         self.locale = wx.Locale(wx.LANGUAGE_DEFAULT)
+
+        # Bind close button to handler
+        self.Bind(wx.EVT_CLOSE, self.close_handler)
 
         # Folder and filename for translations
         wx.Locale.AddCatalogLookupPathPrefix('locale')
@@ -96,6 +126,15 @@ class MicWindow(wx.Frame):
         self.SetTitle('WinMic')
         self.SetSize(((320, 160)))
         self.Centre()
+
+    # Hide or close window depending on user input
+    def close_handler(self, event):
+        hide_onclose = self.sizer.control_by_name('tray_checkbox').GetValue()
+        if hide_onclose:
+            self.Hide()
+        else:
+            self.tray_icon.Destroy()
+            self.Destroy()
 
     # Shorthand function 
     # so i don't have to write micwindow.sizer.control_by_name
@@ -137,9 +176,17 @@ class MicWindow(wx.Frame):
         ip_label = wx.StaticText(pnl, 
         label=_('Your IPv4 address is: '))
 
+        # Give user the option to send app to tray
+        tray_checkbox = wx.CheckBox(pnl,
+        label=_('Hide to tray on window close'))
+
         self.sizer.new_control(ip_label, 'ip_label', 
         control_options=(0, wx.ALIGN_CENTER | wx.ALL, 5),
-        sizer_options=(1, wx.ALL | wx.ALIGN_CENTER, 5))
+        sizer_options=(0, wx.ALL | wx.ALIGN_CENTER, 5))
+
+        self.sizer.new_control(tray_checkbox, 'tray_checkbox',
+        control_options=(0, wx.ALIGN_LEFT | wx.ALL, 5),
+        sizer_options=(1, wx.ALL | wx.ALIGN_LEFT, 5))
 
         self.sizer.new_controls_row({ 
             "start_button":start_button,
