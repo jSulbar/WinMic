@@ -99,7 +99,12 @@ class TrayIcon(wx.adv.TaskBarIcon):
         # Exit button, close program on click
         self.menu = wx.Menu()
         exit_button = self.menu.Append(wx.ID_EXIT)
-        self.Bind(wx.EVT_MENU, self.frame.close_handler, exit_button)
+        self.Bind(wx.EVT_MENU, self.close_handler, exit_button)
+
+    # Close program
+    def close_handler(self, event):
+        self.frame.Destroy()
+        self.Destroy()
 
     def show_window(self, event):
         self.frame.Show()
