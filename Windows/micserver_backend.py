@@ -14,7 +14,7 @@ class MicInstance:
     # Writes data to VBCable input
     def thread_target(self):
         while self.running:
-            audio_data = self.socket.receive_buffer()
+            audio_data = self.socket.recv(self.socket.bufsize)
             self.stream.write(audio_data)
         self.stream.close()
         self.socket.close()
@@ -31,19 +31,17 @@ class MicInstance:
                         daemon=True)
         thread.start()
 
-# I don't know if this class' existence is necessary but w/e
-# Manage UDP socket
-class DatagramSocket:
-    def __init__(self, port) -> None:
+
+# UDP socket class
+class DatagramSocket(socket.socket):
+    def __init__(self, port, bufsize = 32768) -> None:
+        # Init as UDP using local network
+        socket.socket.__init__(self, socket.AF_INET, socket.SOCK_DGRAM)
+
+        # Make socket reusable to disable TIME_WAIT between sockets
+        self.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.port = port
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-    def bind_socket(self, addr = ''):
-        self.socket.bind((addr, self.port))
-
-    # Receive audio from phone
-    def receive_buffer(self, bufsize = 32768):
-        return self.socket.recv(bufsize)
+        self.bufsize = bufsize
 
     # Really hackish way of getting local ip.
     # https://stackoverflow.com/questions/166506/
@@ -79,7 +77,7 @@ class MicManager:
         pa = pyaudio.PyAudio()
         stream = pa.open(44100, 1, pyaudio.paInt16, output=True)
         socket = DatagramSocket(12358)
-        socket.bind_socket()
+        socket.bind(('', socket.port))
 
         self.mic_instance = MicInstance(stream, socket)
         self.mic_instance.start()
