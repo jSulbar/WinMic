@@ -85,21 +85,27 @@ class TrayIcon(wx.adv.TaskBarIcon):
         self.frame = frame
         self.icon = wx.Icon()
 
-        # Show micWindow on left click, display options on right
+        # Show micWindow on left click
         self.SetIcon(self.icon, 'WinMic')
         self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.show_window)
-        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.options)
+
+        # Display options on right
+        self.create_rclick_menu()
+        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.show_options)
+
+    # Right-click menu definitions for this trayicon
+    # For now, only add an exit option
+    def create_rclick_menu(self):
+        # Exit button, close program on click
+        self.menu = wx.Menu()
+        exit_button = self.menu.Append(wx.ID_EXIT)
+        self.Bind(wx.EVT_MENU, self.frame.close_handler, exit_button)
 
     def show_window(self, event):
         self.frame.Show()
 
-    # For now, only add an exit option
-    def options(self, event):
-        _ = wx.GetTranslation
-
-        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_UP, self.OnPopup)
-        self.menu = wx.Menu()
-        self.menu.Append(wx.ID_EXIT, _('Exit'))
+    def show_options(self, event):
+        self.PopupMenu(self.menu)
     
         
 class MicWindow(wx.Frame):
@@ -114,7 +120,7 @@ class MicWindow(wx.Frame):
         # Locale object for multi-language support
         self.locale = wx.Locale(wx.LANGUAGE_DEFAULT)
 
-        # Bind close button to handler
+        # Bind close buttons to handler
         self.Bind(wx.EVT_CLOSE, self.close_handler)
 
         # Folder and filename for translations
