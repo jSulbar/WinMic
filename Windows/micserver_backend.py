@@ -6,14 +6,18 @@ from threading import Thread
 
 # Class for microphone IO.
 class MicInstance:
-    def __init__(self) -> None:
+    def __init__(self, stream, socket) -> None:
         self.running = False
+        self.stream = stream
+        self.socket = socket
 
     # Writes data to VBCable input
-    def thread_target(self, stream, socket):
+    def thread_target(self):
         while self.running:
-            audio_data = socket.receive_buffer()
-            stream.write(audio_data)
+            audio_data = self.socket.receive_buffer()
+            self.stream.write(audio_data)
+        self.stream.close()
+        self.socket.close()
 
     # Sets the running flag to false,
     # stopping the thread
@@ -21,10 +25,9 @@ class MicInstance:
         self.running = False
 
     # Starts the thread with the given socket.
-    def start(self, stream, socket):
+    def start(self):
         self.running = True
         thread = Thread(target=self.thread_target,
-                        args=(stream, socket),
                         daemon=True)
         thread.start()
 
@@ -54,7 +57,6 @@ class DatagramSocket:
 # and audio stream.
 class MicManager:
     def __init__(self, frame) -> None:
-        self.mic_instance = MicInstance()
         self.frame = frame
 
     # Set up UI elements
@@ -79,7 +81,8 @@ class MicManager:
         socket = DatagramSocket(12358)
         socket.bind_socket()
 
-        self.mic_instance.start(stream, socket)
+        self.mic_instance = MicInstance(stream, socket)
+        self.mic_instance.start()
 
     def stop_mic(self, event):
         self.frame.toggle_buttons()
