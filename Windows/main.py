@@ -1,5 +1,5 @@
 import wx
-from micserver_ui import MicWindow
+from gui.app_frame import MicWindow
 from micserver_backend import MicManager
 
 
