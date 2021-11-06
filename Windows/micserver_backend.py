@@ -53,7 +53,7 @@ class DatagramSocket(socket.socket):
 
 # Class that connects the UI with the socket
 # and audio stream.
-class MicManager:
+class MicBackend:
     def __init__(self, frame) -> None:
         self.frame = frame
 
