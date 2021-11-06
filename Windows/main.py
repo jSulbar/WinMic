@@ -1,6 +1,6 @@
 import wx
 from gui.app_frame import MicFrame
-from micserver_backend import MicManager
+from client.mic_backend import MicBackend
 
 
 if __name__ == '__main__':
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     ex.init_gui()
     ex.add_controls()
 
-    backend = MicManager(ex)
+    backend = MicBackend(ex)
     backend.setup()
 
     ex.Show()
