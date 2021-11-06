@@ -6,7 +6,7 @@ from .mic_player import MicPlayer
 
 # Class that connects the UI with the socket
 # and audio stream.
-class MicBackend:
+class BackendConnector:
     def __init__(self, frame) -> None:
         self.frame = frame
 
