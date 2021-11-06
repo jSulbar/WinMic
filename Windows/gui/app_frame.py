@@ -3,7 +3,7 @@ from .tray_icon import TrayIcon
 from .nested_sizer import ParentSizer
     
         
-class MicWindow(wx.Frame):
+class MicFrame(wx.Frame):
     def __init__(self):
         # Make window unresizeable
         wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
