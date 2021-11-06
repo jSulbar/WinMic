@@ -5,7 +5,7 @@ from threading import Thread
 
 
 # Class for microphone IO.
-class MicInstance:
+class MicPlayback:
     def __init__(self, stream, socket) -> None:
         self.running = False
         self.stream = stream
@@ -79,7 +79,7 @@ class MicBackend:
         socket = DatagramSocket(12358)
         socket.bind(('', socket.port))
 
-        self.mic_instance = MicInstance(stream, socket)
+        self.mic_instance = MicPlayback(stream, socket)
         self.mic_instance.start()
 
     def stop_mic(self, event):
