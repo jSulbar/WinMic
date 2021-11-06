@@ -1,6 +1,6 @@
 import wx
 from gui.app_frame import MicFrame
-from client.mic_backend import MicBackend
+from client.gui_backend import BackendConnector
 
 
 if __name__ == '__main__':
@@ -9,12 +9,12 @@ if __name__ == '__main__':
     app = wx.App()
     
     # Init window and add controls
-    ex = MicFrame()
-    ex.init_gui()
-    ex.add_controls()
+    window = MicFrame()
+    window.init_gui()
+    window.add_controls()
 
-    backend = MicBackend(ex)
+    backend = BackendConnector(window)
     backend.setup()
 
-    ex.Show()
+    window.Show()
     app.MainLoop()
