@@ -13,9 +13,6 @@ class MicFrame(wx.Frame):
         # System tray icon
         self.tray_icon = TrayIcon(self)
 
-        # Locale object for multi-language support
-        self.locale = wx.Locale(wx.LANGUAGE_DEFAULT)
-
         # Bind close buttons to handler
         self.Bind(wx.EVT_CLOSE, self.close_handler)
 
