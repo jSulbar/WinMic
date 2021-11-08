@@ -8,7 +8,6 @@ class MicFrame(wx.Frame):
         # Make window unresizeable
         wx.Frame.__init__(self, None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
         self.sizer = ParentSizer(wx.VERTICAL)
-        self.app_name = 'WinMic'
 
         # System tray icon
         self.tray_icon = TrayIcon(self)
@@ -18,7 +17,6 @@ class MicFrame(wx.Frame):
 
     def init_gui(self):
         # Set window title and center
-        self.SetTitle(self.app_name)
         self.SetSize(((320, 160)))
         self.Centre()
 
