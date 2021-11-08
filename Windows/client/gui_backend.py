@@ -7,11 +7,15 @@ from .mic_player import MicPlayer
 # Class that connects the UI with the socket
 # and audio stream.
 class BackendConnector:
-    def __init__(self, frame) -> None:
+    def __init__(self, frame, app) -> None:
         self.frame = frame
+        self.app = app
 
     # Set up UI elements
     def setup(self):
+        # Set window title
+        self.frame.SetTitle(self.app.AppName)
+
         # Add ip address to label
         ip_control = self.frame.control_by_name('ip_label')
         ip_control.LabelText += DatagramSocket.get_local_ip()
