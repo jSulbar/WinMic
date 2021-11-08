@@ -16,10 +16,6 @@ class MicFrame(wx.Frame):
         # Bind close buttons to handler
         self.Bind(wx.EVT_CLOSE, self.close_handler)
 
-        # Folder and filename for translations
-        wx.Locale.AddCatalogLookupPathPrefix('locale')
-        self.locale.AddCatalog('i18n')
-
     def init_gui(self):
         # Set window title and center
         self.SetTitle(self.app_name)
