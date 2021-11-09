@@ -1,7 +1,9 @@
 import wx
 from .tray_icon import TrayIcon
 from .nested_sizer import ParentSizer
-    
+
+# Define _ for wx's gettext
+_ = wx.GetTranslation
         
 class MicFrame(wx.Frame):
     def __init__(self):
@@ -44,9 +46,6 @@ class MicFrame(wx.Frame):
     def add_controls(self):
         # Create a panel container to put controls in
         pnl = wx.Panel(self)
-
-        # Needs to be an underscore for gettext to parse it.
-        _ = wx.GetTranslation
 
         # Create stop/start buttons for mic
         # stop button is initially disabled
