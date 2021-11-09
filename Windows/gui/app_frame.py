@@ -29,11 +29,6 @@ class MicFrame(wx.Frame):
             self.tray_icon.Destroy()
             self.Destroy()
 
-    # Shorthand function 
-    # so i don't have to write micwindow.sizer.control_by_name
-    def control_by_name(self, name):
-        return self.sizer.control_by_name(name)
-
     def toggle_buttons(self):
         # Get buttons by name
         start_button = self.sizer.control_by_name('start_button')
@@ -45,11 +40,6 @@ class MicFrame(wx.Frame):
         elif stop_button.Disable():
             start_button.Enable()
 
-    # Bind a control to an event
-    def bind_control(self, name, event, callback):
-        control = self.sizer.control_by_name(name)
-        control.Bind(event, callback)
-        
     # Function to add controls to window
     def add_controls(self):
         # Create a panel container to put controls in
