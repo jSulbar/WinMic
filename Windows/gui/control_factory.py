@@ -1,4 +1,5 @@
 """Contains code that handles the logic for creating controls as defined on layout_definitions.py."""
+from typing import Type
 import wx
 
 
@@ -26,23 +27,17 @@ class ControlFactory:
         # Update the dict differently based on whether it has multiple controls
         # or a single one.
         if 'controls' in element:
-            ctrl_dict = {
-                'controls': {},
-                'psizer_args': element['psizer_args'],
-                'csizer_args': element['csizer_args']
-            }
+            ctrl_dict = element.copy()
+            ctrl_dict['controls'] = {}
+
             for ctrl in element['controls']:
                 ctrl_dict['controls'][ctrl['name']] = self._make_control(ctrl)
             return ctrl_dict
 
         elif 'control' in element:
-            ctrl = element['control']
-            ctrl_dict = {
-                'name': ctrl['name'],
-                'control': self._make_control(ctrl),
-                'psizer_args': element['psizer_args'],
-                'csizer_args': element['psizer_args']
-            }
+            ctrl_dict = element.copy()
+            ctrl_dict['name'] = element['control']['name']
+            ctrl_dict['control'] = self._make_control(ctrl_dict['control'])
             return ctrl_dict
 
     def _make_control(self, ctrl):
