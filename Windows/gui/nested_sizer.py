@@ -26,7 +26,7 @@ class ParentSizer(wx.BoxSizer):
     def __init__(self, sizer = wx.HORIZONTAL) -> None:
         super().__init__(sizer)
         # List of child sizers to keep track of
-        self.sizer_list = []
+        self._csizer_list = []
 
     # Add child to this sizer
     def add_sizer(self, sizer, *args):
@@ -35,13 +35,13 @@ class ParentSizer(wx.BoxSizer):
             raise TypeError('Argument is not an instance of ChildSizer')
 
         # Add to list
-        self.sizer_list.append(sizer)
+        self._csizer_list.append(sizer)
         self.Add(sizer, *args)
 
     # Search inside child sizers for a control
     # with the given name
     def control_by_name(self, name):
-        for childsizer in self.sizer_list:
+        for childsizer in self._csizer_list:
             for key in childsizer.control_list:
                 if key == name:
                     return childsizer.control_list[name]
@@ -60,7 +60,7 @@ class ParentSizer(wx.BoxSizer):
 
             self.add_sizer(new_sizer, *sizer_options)
         else:
-            raise TypeError('Argument must be a wxWidgets control!')
+            raise TypeError('Argument must be a wxWidgets control')
 
     # Add multiple controls and put them inside a single sizer
     # Takes a dict formatted as { "controlname":control }
