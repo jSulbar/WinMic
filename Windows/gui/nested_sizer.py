@@ -5,8 +5,8 @@ class ChildSizer(wx.BoxSizer):
     """Custom BoxSizer to be contained inside a ParentSizer instance. Controls should be added with
     csizer.add_control() instead of wxPython's default sizer.Add(). Each control must be added with
     an unique name to identify it. These can then be retrieved anytime using csizer.get_control."""
-    def __init__(self, sizer = wx.HORIZONTAL) -> None:
-        super().__init__(sizer)
+    def __init__(self) -> None:
+        super().__init__(wx.HORIZONTAL)
         # Dict with every control that has been added
         # To this sizer
         self.control_list = {}
@@ -30,8 +30,8 @@ class ParentSizer(wx.BoxSizer):
     added with psizer.new_control() or psizer.new_controls_row(). It implicitly creates a new ChildSizer
     with each control or controls added to avoid verbose object creation and handling, and maintains
     references to each control added which can then be retrieved with control_by_name()."""
-    def __init__(self, sizer = wx.VERTICAL) -> None:
-        super().__init__(sizer)
+    def __init__(self) -> None:
+        super().__init__(wx.VERTICAL)
         # List of child sizers to keep track of
         self._csizer_list = []
 
@@ -76,7 +76,7 @@ class ParentSizer(wx.BoxSizer):
         into the new ChildSizer."""
         if isinstance(control, wx.Control):
             # Create a new sizer for it
-            new_sizer = ChildSizer(wx.HORIZONTAL)
+            new_sizer = ChildSizer()
             new_sizer.add_control(control, name, *control_options)
 
             self.add_sizer(new_sizer, *sizer_options)
@@ -98,7 +98,7 @@ class ParentSizer(wx.BoxSizer):
         control_options: A tuple with arguments defining how the new controls will fit
         into the new ChildSizer."""
         if type(controls) is dict:
-            new_sizer = ChildSizer(wx.HORIZONTAL)
+            new_sizer = ChildSizer()
 
             for key in controls:
                 new_sizer.add_control(controls[key], key, *control_options)
