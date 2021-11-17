@@ -36,7 +36,7 @@ class ParentSizer(wx.BoxSizer):
         self._csizer_list = []
 
     # Add child to this sizer
-    def add_sizer(self, sizer, *args):
+    def _add_sizer(self, sizer, *args):
         # Only accept ChildSizers
         if type(sizer) is not ChildSizer:
             raise TypeError('Argument is not an instance of ChildSizer')
@@ -54,11 +54,6 @@ class ParentSizer(wx.BoxSizer):
             for key in childsizer.control_list:
                 if key == name:
                     return childsizer.control_list[name]
-
-    # Create empty sizers in bulk
-    def bulk_add_sizers(self, proportion, flag, border, *sizers):
-        for sizer in sizers:
-            self.add_sizer(sizer, proportion, flag, border)
 
     # Add a new control
     def new_control(self, control, name, *, sizer_options, control_options):
@@ -79,7 +74,7 @@ class ParentSizer(wx.BoxSizer):
             new_sizer = ChildSizer()
             new_sizer.add_control(control, name, *control_options)
 
-            self.add_sizer(new_sizer, *sizer_options)
+            self._add_sizer(new_sizer, *sizer_options)
         else:
             raise TypeError('Argument must be a wxWidgets control')
 
@@ -103,6 +98,6 @@ class ParentSizer(wx.BoxSizer):
             for key in controls:
                 new_sizer.add_control(controls[key], key, *control_options)
 
-            self.add_sizer(new_sizer, *sizer_options)
+            self._add_sizer(new_sizer, *sizer_options)
         else:
             raise TypeError('Argument must be dict in the format { "controlname":control }')
