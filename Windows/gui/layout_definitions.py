@@ -1,8 +1,12 @@
+
+"""Module containing constants that define what controls each layout of this app have, and
+the data necessary to create them. 'Layout' is defined as anything that could contain a group
+of controls, such as a Frame."""
+
 import wx
 
 # Create alias for gettext parsing
 _ = wx.GetTranslation
-
 
 MIC_FRAME_LAYOUT = [
         {
