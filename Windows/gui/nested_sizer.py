@@ -23,7 +23,7 @@ class ChildSizer(wx.BoxSizer):
 # A parent sizer class to hold other sizers,
 # and to make it less repetitive to add controls
 class ParentSizer(wx.BoxSizer):
-    def __init__(self, sizer = wx.HORIZONTAL) -> None:
+    def __init__(self, sizer = wx.VERTICAL) -> None:
         super().__init__(sizer)
         # List of child sizers to keep track of
         self._csizer_list = []
