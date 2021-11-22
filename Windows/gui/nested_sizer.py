@@ -101,3 +101,18 @@ class ParentSizer(wx.BoxSizer):
             self._add_sizer(new_sizer, *sizer_options)
         else:
             raise TypeError('Argument must be dict in the format { "controlname":control }')
+
+    def controls_from_factory(self, controls):
+        """
+        Add controls inside a dictionary returned by ControlFactory into
+        this sizer.
+        """
+        for control in controls:
+            if 'controls' in control:
+                self.new_controls_row(control['controls'],
+                                        sizer_options=control['psizer_args'],
+                                        control_options=control['csizer_args'])
+            else:
+                self.new_control(control['control'], control['name'],
+                                    sizer_options=control['psizer_args'],
+                                    control_options=control['csizer_args'])
