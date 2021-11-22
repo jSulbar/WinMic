@@ -5,39 +5,27 @@ of controls, such as a Frame."""
 
 import wx
 
-# Create alias for gettext parsing
-_ = wx.GetTranslation
-
-MIC_FRAME_LAYOUT = [
+MAIN_WINDOW_LAYOUT = [
         {
             'control': {
                 'class': wx.StaticText,
                 'name': 'ip_label',
-                'label': _('Your IPv4 address is: ')
+                'label': 'Your IPv4 address is: '
             },
-            'psizer_args': (0, wx.ALIGN_LEFT | wx.ALL, 5),
+            'psizer_args': (0, wx.ALIGN_CENTER | wx.ALL, 5),
             'csizer_args': (0, wx.ALL | wx.ALIGN_CENTER, 5)
         },
         {
-            'control': {
-                'class': wx.CheckBox,
-                'name': 'tray_checkbox',
-                'label': _('Hide to tray on window close')
-            },
-            'psizer_args': (1, wx.ALL | wx.ALIGN_LEFT, 5),
-            'csizer_args': (0, wx.ALIGN_LEFT | wx.ALL, 5)
-        },
-                {
             'controls': [
                 {
                     'class': wx.Button,
                     'name': 'start_button',
-                    'label': _('Start recording')
+                    'label': 'Start recording'
                 },
                 {
                     'class': wx.Button,
                     'name': 'stop_button',
-                    'label': _('Stop recording'),
+                    'label': 'Stop recording',
                     'setup': lambda btn: btn.Disable()
                 }
             ],
