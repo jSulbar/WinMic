@@ -1,7 +1,8 @@
 """Contains code that handles the logic for creating controls as defined on layout_definitions.py."""
-from typing import Type
 import wx
 
+# Alias GetTranslation for gettext parsing
+_ = wx.GetTranslation
 
 class ControlFactory:
     """Creates wxPython controls given a layout definition, following a given format. 
@@ -43,8 +44,8 @@ class ControlFactory:
     def _make_control(self, ctrl):
         """Creates the actual wxPython object, using the label and setup callback provided
         by its dict."""
-        # Makes an object using the label provided.
-        ctrl_obj = ctrl['class'](self._parent, label=ctrl['label'])
+        # Makes an object of the class declared in the control definition.
+        ctrl_obj = ctrl['class'](self._parent, label=_(ctrl['label']))
         if 'setup' in ctrl:
             ctrl['setup'](ctrl_obj)
         return ctrl_obj
