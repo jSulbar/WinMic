@@ -47,6 +47,7 @@ class MainWindowBackend:
         self.mic_player = mic_player
         self.socket = socket
         self.to_tray_onclose = minimize
+        self.audio_devices = {}
 
     def inject_controls(self, ctrls_list):
         """
@@ -68,11 +69,15 @@ class MainWindowBackend:
         # Set IP on label
         self.iplabel.LabelText += self.socket.get_local_ip()
 
-        # Enumerate devices to select from
+        # Populate audio device selection
         for i in range(self.mic_player.get_device_count()):
             device = self.mic_player.get_device_info_by_index(i)
             if device['hostApi'] == pyaudio.paASIO:
+                self.audio_devices[device['name']] = device['index']
                 self.device_select.Append(device['name'])
+        
+        # Start with the first device already selected
+        self.device_select.SetSelection(0)
 
     def bind_controls(self):
         self.startbtn.Bind(wx.EVT_BUTTON, self.micbtns_toggle)
@@ -95,7 +100,16 @@ class MainWindowBackend:
 
     @skip_event
     def start_mic(self, event):
-        self.mic_player.start(self.socket)
+        if self.audio_devices:
+            # Get the selected audio device
+            choice_index = self.device_select.GetCurrentSelection()
+            selected_device = self.device_select.GetString(choice_index)
+
+            # Start streaming to it
+            self.mic_player.start(self.socket, self.audio_devices[selected_device])
+        else:
+            # Else just use the default device PyAudio picks
+            self.mic_player.start(self.socket)
 
     @skip_event
     def stop_mic(self, event):
