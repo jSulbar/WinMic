@@ -1,27 +1,1156 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-11-02 10:58-0400\n"
-"PO-Revision-Date: 2021-11-02 13:39-0400\n"
+"POT-Creation-Date: 2021-11-22 04:33-0400\n"
+"PO-Revision-Date: 2021-11-22 04:34-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_VE\n"
+"Language: es_419\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.0\n"
-"X-Poedit-Basepath: ..\n"
+"X-Poedit-Basepath: ../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SearchPath-0: micserver_ui.py\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: micserver_ui.py:127
+#: gui/layout_definitions.py:17 gui/layout_definitions.py:19
+msgid "Your IPv4 address is: "
+msgstr "Tu dirección IPv4: "
+
+#: gui/layout_definitions.py:29
 msgid "Start recording"
-msgstr "Iniciar microfono"
+msgstr "Empezar grabación"
 
-#: micserver_ui.py:128
+#: gui/layout_definitions.py:34
 msgid "Stop recording"
-msgstr "Detener microfono"
+msgstr "Detener grabación"
 
-#: micserver_ui.py:134
-msgid "Your IPv4 address is "
-msgstr "Tu dirección IPv4 es "
+#: venv/Lib/site-packages/wx/lib/CDate.py:27
+#: venv/Lib/site-packages/wx/lib/calendar.py:98
+msgid "January"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:27
+#: venv/Lib/site-packages/wx/lib/calendar.py:98
+msgid "February"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:27
+#: venv/Lib/site-packages/wx/lib/calendar.py:98
+msgid "March"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:28
+#: venv/Lib/site-packages/wx/lib/calendar.py:99
+msgid "April"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:28
+#: venv/Lib/site-packages/wx/lib/calendar.py:99
+msgid "May"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:28
+#: venv/Lib/site-packages/wx/lib/calendar.py:99
+msgid "June"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:29
+#: venv/Lib/site-packages/wx/lib/calendar.py:100
+msgid "July"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:29
+#: venv/Lib/site-packages/wx/lib/calendar.py:100
+msgid "August"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:29
+#: venv/Lib/site-packages/wx/lib/calendar.py:100
+msgid "September"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:30
+#: venv/Lib/site-packages/wx/lib/calendar.py:101
+msgid "October"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:30
+#: venv/Lib/site-packages/wx/lib/calendar.py:101
+msgid "November"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:30
+#: venv/Lib/site-packages/wx/lib/calendar.py:101
+msgid "December"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:36
+msgid "Sunday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:36
+msgid "Monday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:36
+msgid "Tuesday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:36
+msgid "Wednesday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:37
+msgid "Thursday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:37
+msgid "Friday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:37
+msgid "Saturday"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:95
+msgid "Sun"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:95
+msgid "Mon"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:95
+msgid "Tue"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:95
+msgid "Wed"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:95
+msgid "Thu"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:38
+#: venv/Lib/site-packages/wx/lib/calendar.py:96
+msgid "Fri"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/CDate.py:39
+#: venv/Lib/site-packages/wx/lib/calendar.py:96
+msgid "Sat"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/artmanager.py:644
+#: venv/Lib/site-packages/wx/lib/agw/artmanager.py:2066
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:525
+msgid "Default"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/artmanager.py:2067
+msgid "Dark"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/artmanager.py:2068
+msgid "Dark Olive Green"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/artmanager.py:2069
+msgid "Generic"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1065
+msgid "Pane Switcher"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1190
+msgid "<body bgcolor=\"#"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1190
+msgid "\"><b>"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1190
+msgid "</b>"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1193
+msgid "<p>"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/aui_switcherdialog.py:1196
+msgid "</body>"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/framemanager.py:10635
+msgid "Pane Preview"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:45
+msgid "Cl&ose"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:46
+msgid "Close All"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:48
+msgid "&Next"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:49
+msgid "&Previous"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:216
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:227
+#: venv/Lib/site-packages/wx/lib/agw/aui/tabmdi.py:229
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2913
+#: venv/Lib/site-packages/wx/lib/pydocview.py:3015
+#: venv/Lib/site-packages/wx/lib/pydocview.py:3016
+msgid "&Window"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2860
+msgid "CubeColourDialog: Choose Colour"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2879
+msgid "HSB"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2880
+msgid "RGB Values"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2881
+msgid "HSB Values"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2882
+msgid "RGB"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2883
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2884
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3054
+msgid "Alpha"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2891
+msgid "Show Alpha Control"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2893
+msgid "Add to custom colours"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2895
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:1035
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:503
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2261
+msgid "OK"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2896
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:1047
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:505
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2262
+msgid "Cancel"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2989
+msgid "HTML Code"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:2990
+msgid "Web Safe"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3000
+msgid "HTML Name"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3006
+msgid "Custom Colours"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3020
+msgid "Old Colour"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3023
+msgid "New Colour"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3024
+msgid "MS Access Code"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3032
+msgid "Red"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3034
+msgid "Green"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3036
+msgid "Blue"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3043
+msgid "Hue"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3045
+msgid "Saturation"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/cubecolourdialog.py:3047
+msgid "Brightness"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:187
+msgid "Customize"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:222
+#: venv/Lib/site-packages/wx/lib/pydocview.py:87
+msgid "&Close"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:231
+msgid "Menus"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:232
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1489
+msgid "Options"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:300
+msgid "Select Menu To Add/Remove:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:342
+msgid "Default Style"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:342
+msgid "Metallic"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:343
+msgid "Menu bar style"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:359
+msgid "Default style settings"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:361
+msgid "Draw vertical gradient"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:367
+msgid "Draw border around menu bar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:373
+msgid "Toolbar float over menu bar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/fmcustomizedlg.py:381
+msgid "Colour Scheme"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:518
+#: venv/Lib/site-packages/wx/lib/pydocview.py:176
+msgid "Save"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:520
+msgid "Don't Save"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:1011
+msgid "Yes"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:1023
+msgid "No"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/genericmessagedialog.py:1059
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2263
+msgid "Help"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/infobar.py:388
+msgid "Hide this notification message."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:301
+msgid "Choose one or more folders:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:301
+msgid "Browse For Folders"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:428
+msgid "Folder:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/multidirdialog.py:501
+msgid "Make New Folder"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/pybusyinfo.py:284
+msgid "Busy"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:474
+msgid "New accelerator..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:476
+msgid "Disabled"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:945
+msgid "Configure Keyboard Shortcuts Help"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:984
+msgid "Back"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:985
+msgid "Go to the previous page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:987
+msgid "Forward"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:988
+msgid "Go to the next page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:992
+msgid "Home"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:992
+msgid "Home Page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:993
+msgid "Go to the home page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:995
+msgid "Refresh"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:996
+msgid "Refresh the current page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1001
+#: venv/Lib/site-packages/wx/lib/pydocview.py:179
+msgid "Print"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1002
+msgid "Print the current page"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1655
+#, python-format
+msgid ""
+"Shortcut \"%(shortcut)s\" is already taken by\n"
+"\"%(item)s\" from the \"%(group)s\" group. "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1658
+#, python-format
+msgid ""
+"Reassigning the shortcut will cause it to be removed from \n"
+"\"%(item)s\". "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1660
+msgid "Conflicting Shortcuts"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1663
+msgid "Reassing shortcut "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1698
+msgid "Action"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1699
+msgid "Shortcut"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:1700
+msgid "Help Label"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2208
+msgid "Configure Keyboard Shortcuts"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2230
+msgid "&Search:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2244
+msgid "Restore Defaults "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2248
+msgid ""
+"To edit a shortcut key, click on the corresponding row\n"
+"and type a new accelerator, or press backspace to clear."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/agw/shortcuteditor.py:2421
+msgid "Accelerators"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:137
+msgid "Basic Colours:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:138
+msgid "Custom Colours:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:139
+msgid "Add to Custom Colours"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:207
+msgid "Solid Colour"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:213
+msgid "H:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:216
+msgid "S:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:219
+msgid "V:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:233
+msgid "R:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:236
+msgid "G:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/colourchooser/pycolourchooser.py:239
+msgid "B:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:382
+msgid "Application"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:383
+#: venv/Lib/site-packages/wx/lib/docview.py:633
+#, python-format
+msgid ""
+"'%s' has been modified outside of %s.  Overwrite '%s' with current changes?"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:408
+#: venv/Lib/site-packages/wx/lib/docview.py:2160
+msgid " ("
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:408
+#: venv/Lib/site-packages/wx/lib/docview.py:2160
+msgid ") |"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:409
+msgid "Save As"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:450
+#: venv/Lib/site-packages/wx/lib/docview.py:523
+#: venv/Lib/site-packages/wx/lib/docview.py:2437
+#: venv/Lib/site-packages/wx/lib/docview.py:2683
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1074
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2213
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2389
+msgid "File Error"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:594
+msgid "Untitled"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:632
+#: venv/Lib/site-packages/wx/lib/docview.py:648
+#: venv/Lib/site-packages/wx/lib/docview.py:1880
+msgid "Warning"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:650
+#, python-format
+msgid "Save changes to '%s'?"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:878
+#: venv/Lib/site-packages/wx/lib/docview.py:2006
+msgid " - "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1554
+msgid "Unable to display print preview."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1558
+#: venv/Lib/site-packages/wx/lib/pydocview.py:180
+msgid "Print Preview"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1560
+#, python-format
+msgid "%s - %s - Preview"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1646
+#: venv/Lib/site-packages/wx/lib/pydocview.py:110
+msgid "&Undo\tCtrl+Z"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1658
+#: venv/Lib/site-packages/wx/lib/pydocview.py:111
+msgid "&Redo\tCtrl+Y"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1882
+#, python-format
+msgid "'%s' has been modified outside of %s.  Reload '%s' from file system?"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1888
+#, python-format
+msgid "Couldn't reload '%s'.  Unable to close current '%s'."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:1991
+#, python-format
+msgid "Untitled %d"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2159
+msgid "|"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2161
+#, python-format
+msgid "All|*.*|%s"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2163
+msgid "*.*"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2166
+msgid "Select a File"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2229
+msgid "Select a document type:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2230
+msgid "Documents"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2265
+msgid "Select a document view:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:2266
+msgid "Views"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3025
+msgid "Ctrl+Z"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3026
+msgid "Ctrl+Y"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3133
+msgid "&Undo "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3137
+msgid "&Undo"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3139
+msgid "&Redo "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/docview.py:3141
+msgid "&Redo"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:384
+msgid "Set background to white"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:390
+msgid "Set background to grey"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:396
+msgid "Set background to black"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:402
+msgid "Set background to checkered pattern"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:411
+msgid "No framing around image"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:417
+msgid "Frame image with a box"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:423
+msgid "Frame image with a dimmed background"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:459
+msgid "Image Browser"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:485
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:486
+msgid "Up one level"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:492
+msgid "Browse for a &folder..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/imagebrowser.py:493
+msgid "Browse for a folder..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:85
+msgid "&New...\tCtrl+N"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:85
+#: venv/Lib/site-packages/wx/lib/pydocview.py:174
+msgid "Creates a new document"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:86
+msgid "&Open...\tCtrl+O"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:86
+#: venv/Lib/site-packages/wx/lib/pydocview.py:175
+msgid "Opens an existing document"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:87
+msgid "Closes the active document"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:89
+msgid "Close A&ll"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:89
+msgid "Closes all open documents"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:91
+msgid "&Save\tCtrl+S"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:91
+#: venv/Lib/site-packages/wx/lib/pydocview.py:176
+msgid "Saves the active document"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:92
+msgid "Save &As..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:92
+msgid "Saves the active document with a new name"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:93
+msgid "Save All\tCtrl+Shift+A"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:93
+msgid "Saves the all active documents"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:97
+msgid "&Print\tCtrl+P"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:97
+#: venv/Lib/site-packages/wx/lib/pydocview.py:180
+msgid "Prints the active document"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:98
+msgid "Print Pre&view"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:98
+#: venv/Lib/site-packages/wx/lib/pydocview.py:179
+msgid "Displays full pages"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:99
+msgid "Page Set&up"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:99
+msgid "Changes page layout settings"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:102
+msgid "&Quit"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:102
+#: venv/Lib/site-packages/wx/lib/pydocview.py:104
+msgid "Closes this program"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:104
+msgid "E&xit"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:107
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2559
+msgid "&File"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:110
+#: venv/Lib/site-packages/wx/lib/pydocview.py:185
+msgid "Reverses the last action"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:111
+#: venv/Lib/site-packages/wx/lib/pydocview.py:186
+msgid "Reverses the last undo"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:116
+msgid "Cu&t\tCtrl+X"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:116
+#: venv/Lib/site-packages/wx/lib/pydocview.py:182
+msgid "Cuts the selection and puts it on the Clipboard"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:119
+msgid "&Copy\tCtrl+C"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:119
+#: venv/Lib/site-packages/wx/lib/pydocview.py:183
+msgid "Copies the selection and puts it on the Clipboard"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:122
+msgid "&Paste\tCtrl+V"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:122
+#: venv/Lib/site-packages/wx/lib/pydocview.py:184
+msgid "Inserts Clipboard contents"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:125
+msgid "&Delete"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:125
+msgid "Erases the selection"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:129
+msgid "Select A&ll\tCtrl+A"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:129
+msgid "Selects all available data"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:132
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1923
+msgid "&Edit"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:138
+msgid "&Toolbar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:138
+msgid "Shows or hides the toolbar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:141
+msgid "&Status Bar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:141
+msgid "Shows or hides the status bar"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:144
+msgid "&View"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:147
+msgid "&About "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:147
+msgid "Displays program information, version number, and copyright"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:148
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2912
+msgid "&Help"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:174
+msgid "New"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:175
+msgid "Open"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:177
+msgid "Save All"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:177
+msgid "Saves all the active documents"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:182
+msgid "Cut"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:183
+msgid "Copy"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:184
+msgid "Paste"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:185
+msgid "Undo"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:186
+msgid "Redo"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:249
+msgid "Ready"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:903
+msgid "Close"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:909
+#, python-format
+msgid "Close All but \"%s\""
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:919
+msgid "Select Tab"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1406
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1413
+msgid "&Tools"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1412
+msgid "&Format"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1417
+msgid "&Options..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1417
+msgid "Sets options"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1590
+msgid "Show tips at start up"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1595
+msgid "Show each document in its own window"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1596
+msgid "Show all documents in a single window with tabs"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1597
+msgid "Show all documents in a single window with child windows"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1603
+msgid "Document Display Style"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1617
+msgid "Document Options"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1618
+msgid ""
+"Document interface changes will not appear until the application is "
+"restarted."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:1633
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2720
+msgid "General"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2523
+msgid "About "
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2562
+msgid "&Properties"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2562
+msgid "Show file properties"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2676
+msgid "File Properties"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2690
+msgid "Filename:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2693
+msgid "Location:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2696
+msgid "Size:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2698
+msgid "bytes"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2704
+msgid "Created:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2708
+msgid "Modified:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2712
+msgid "Accessed:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2888
+msgid "&Arrange All"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2888
+msgid "Arrange the open windows"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2897
+msgid "Previous"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2897
+msgid "Previous Tab"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2900
+msgid "Next"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2900
+msgid "Next Tab"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2903
+msgid "Close Current\tCtrl+F4"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:2903
+msgid "Close Current Tab"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:3036
+msgid "&More Windows..."
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:3162
+msgid "Select a window to show:"
+msgstr ""
+
+#: venv/Lib/site-packages/wx/lib/pydocview.py:3163
+msgid "Select Window"
+msgstr ""
+
+#~ msgid "FUCKING FUCK!!!"
+#~ msgstr "COÑO DE LA MADRE!!!!!!!!!!! VERGA!!!!!!!!!!!!!"

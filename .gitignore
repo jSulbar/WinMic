@@ -84,7 +84,12 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-headers/
+# vscode config
 .vscode/
+
+# Pip virtual environments
+venv/
+
+# Binaries
 *.exe
 __pycache__/

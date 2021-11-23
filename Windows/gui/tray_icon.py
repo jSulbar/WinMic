@@ -17,18 +17,14 @@ class TrayIcon(wx.adv.TaskBarIcon):
         self.create_rclick_menu()
         self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.show_options)
 
-    # Right-click menu definitions for this trayicon
-    # For now, only add an exit option
     def create_rclick_menu(self):
         # Exit button, close program on click
         self.menu = wx.Menu()
         exit_button = self.menu.Append(wx.ID_EXIT)
         self.Bind(wx.EVT_MENU, self.close_handler, exit_button)
 
-    # Close program
     def close_handler(self, event):
-        self.frame.Destroy()
-        self.Destroy()
+        wx.Exit()
 
     def show_window(self, event):
         self.frame.Show()
