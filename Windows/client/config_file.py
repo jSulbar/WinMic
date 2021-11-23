@@ -3,6 +3,7 @@ Config file creation and handling for this application.
 """
 import wx
 import os
+from constants import CFGKEY_LANGUAGE, CFGKEY_TRAY
 
 class WinMicConfig(wx.FileConfig):
     """
@@ -25,6 +26,24 @@ class WinMicConfig(wx.FileConfig):
 
         if not os.path.exists(self.path):
             os.mkdir(self.path)
+
+    def get_language(self):
+        """
+        Returns an int representing the wx language ID. This only exists
+        because app.set_lang(cfg.Read(CFGKEY_LANGUAGE)) is too ugly and confusing.
+        """
+        lang = self.Read(CFGKEY_LANGUAGE)
+        return int(lang)
+
+    def get_tray_cfg(self):
+        """
+        Reads the "minimize to tray" option, except it returns a bool instead
+        of a string that says "True". Eugh.
+        """
+        if self.Read(CFGKEY_TRAY) == 'True':
+            return True
+        else:
+            return False
 
     def create_default_cfg(self, cfg_template):
         """
