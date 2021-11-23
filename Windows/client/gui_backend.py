@@ -59,6 +59,21 @@ class MainWindowBackend:
         self.startbtn = ctrls_list['start_button']
         self.stopbtn = ctrls_list['stop_button']
 
+    def fill_control_data(self):
+        """
+        Gives informational controls inside this window the data they 
+        need to display, like the local IP inside the ip label, which
+        is provided by the socket.
+        """
+        # Set IP on label
+        self.iplabel.LabelText += self.socket.get_local_ip()
+
+        # Enumerate devices to select from
+        for i in range(self.mic_player.get_device_count()):
+            device = self.mic_player.get_device_info_by_index(i)
+            if device['hostApi'] == pyaudio.paASIO:
+                self.device_select.Append(device['name'])
+
     def bind_controls(self):
         self.startbtn.Bind(wx.EVT_BUTTON, self.micbtns_toggle)
         self.startbtn.Bind(wx.EVT_BUTTON, self.start_mic)
