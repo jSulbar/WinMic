@@ -45,7 +45,11 @@ class ControlFactory:
         """Creates the actual wxPython object, using the label and setup callback provided
         by its dict."""
         # Makes an object of the class declared in the control definition.
-        ctrl_obj = ctrl['class'](self._parent, label=_(ctrl['label']))
+        if 'label' in ctrl:
+            ctrl_obj = ctrl['class'](self._parent, label=_(ctrl['label']))
+        else:
+            ctrl_obj = ctrl['class'](self._parent)
+            
         if 'setup' in ctrl:
             ctrl['setup'](ctrl_obj)
         return ctrl_obj
