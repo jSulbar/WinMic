@@ -16,6 +16,14 @@ MAIN_WINDOW_LAYOUT = [
             'csizer_args': (0, wx.ALL | wx.ALIGN_CENTER, 5)
         },
         {
+            'control': {
+                'class': wx.Choice,
+                'name': 'device_select'
+            },
+            'psizer_args': (0, wx.ALIGN_CENTER | wx.ALL, 5),
+            'csizer_args': (0, wx.ALL | wx.ALIGN_CENTER, 5)
+        },
+        {
             'controls': [
                 {
                     'class': wx.Button,
