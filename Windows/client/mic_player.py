@@ -44,13 +44,14 @@ class MicPlayer(pyaudio.PyAudio):
         self._running = False
 
     # Starts the thread with the given socket.
-    def start(self, socket):
+    def start(self, socket, audio_device = None):
         # Set flag to ON and open stream
         self._running = True
         stream = self.open(rate=self._audio_config['rate'],
-                           format=self._audio_config['format'],
-                           channels=self._audio_config['channels'],
-                           output=True)
+                        format=self._audio_config['format'],
+                        channels=self._audio_config['channels'],
+                        output_device_index=audio_device,
+                        output=True)
 
         # Convert the thread target to a
         # thread object and run it
