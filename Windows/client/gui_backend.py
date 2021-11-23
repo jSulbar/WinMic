@@ -3,7 +3,21 @@ Module containing the underlying logic behind the GUI such as enabling/disabling
 accessing the configuration file.
 """
 import wx
+import pyaudio
 
+def parse_ctrls(ctrl_defs):
+    """
+    From a dictionary returned by ControlFactory, return a dictionary of controls
+    formatted as { 'controlname': controlobject }.
+    """
+    ctrls_dict = {}
+    for ctrl in ctrl_defs:
+        if 'control' in ctrl:
+            ctrls_dict[ctrl['name']] = ctrl['control']
+        elif 'controls' in ctrl:
+            for key in ctrl['controls']:
+                ctrls_dict[key] = ctrl['controls'][key]
+    return ctrls_dict
 
 def bind_with_args(ctrl, evt_type, uses_event = False, *, callback, args):
     """
@@ -35,6 +49,13 @@ class MainWindowBackend:
         self.to_tray_onclose = minimize
 
     def inject_controls(self, ctrls_list):
+        """
+        Injects the controls created by ControlFactory into this object,
+        forming part of its instance.
+        """
+        ctrls_list = parse_ctrls(ctrls_list)
+        self.iplabel = ctrls_list['ip_label']
+        self.device_select = ctrls_list['device_select']
         self.startbtn = ctrls_list['start_button']
         self.stopbtn = ctrls_list['stop_button']
 
