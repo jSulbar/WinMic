@@ -9,25 +9,23 @@ class TrayIcon(wx.adv.TaskBarIcon):
         wx.adv.TaskBarIcon.__init__(self)
         self.frame = frame
 
-        # Show micWindow on left click
-        self.SetIcon(self.icon, APP_NAME)
-        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, self.show_window)
+        # Show main window on left click
+        self.SetIcon(icon, APP_NAME)
+        self.Bind(wx.adv.EVT_TASKBAR_LEFT_DOWN, lambda e: self.frame.Show())
 
         # Display options on right
         self.create_rclick_menu()
-        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, self.show_options)
+        self.Bind(wx.adv.EVT_TASKBAR_RIGHT_DOWN, lambda e: self.PopupMenu(self.menu))
+
+        self.bind_close_handler()
 
     def create_rclick_menu(self):
         # Exit button, close program on click
         self.menu = wx.Menu()
-        exit_button = self.menu.Append(wx.ID_EXIT)
-        self.Bind(wx.EVT_MENU, self.close_handler, exit_button)
+        self.exit_button = self.menu.Append(wx.ID_EXIT)
 
-    def close_handler(self, event):
-        wx.Exit()
-
-    def show_window(self, event):
-        self.frame.Show()
-
-    def show_options(self, event):
-        self.PopupMenu(self.menu)
+    def bind_close_handler(self):
+        def close(event):
+            self.frame.Destroy()
+            self.Destroy()
+        self.menu.Bind(wx.EVT_MENU, close, self.exit_button)
