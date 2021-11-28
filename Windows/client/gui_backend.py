@@ -4,7 +4,7 @@ accessing the configuration file.
 """
 import wx
 import pyaudio
-from constants import CFGKEY_TRAY, CFGKEY_LANGUAGE, AVAILABLE_LANGS, HOST_APIS
+from constants import CFGKEY_TRAY, CFGKEY_LANGUAGE, AVAILABLE_LANGS, HOST_APIS, CFGKEY_HOSTAPI
 
 
 def parse_ctrls(ctrl_defs):
@@ -65,7 +65,7 @@ class OptionsController:
         host_apis = self.menu.apimenu_items
         for api in host_apis:
             def callback(event, api=api):
-                self.cfg.Write(CFGKEY_LANGUAGE, str(HOST_APIS[api]))
+                self.cfg.Write(CFGKEY_HOSTAPI, str(HOST_APIS[api]))
                 self.cfg.Flush()
                 event.Skip()
             self.menu.Bind(wx.EVT_MENU, callback, host_apis[api])
@@ -95,10 +95,10 @@ class OptionsController:
 
 
 class MainWindowBackend:
-    def __init__(self, mic_player, socket, minimize):
+    def __init__(self, mic_player, socket, cfg):
         self.mic_player = mic_player
         self.socket = socket
-        self.to_tray_onclose = minimize
+        self.cfg = cfg
         self.audio_devices = {}
 
     def inject_controls(self, ctrls_list):
@@ -124,7 +124,7 @@ class MainWindowBackend:
         # Populate audio device selection
         for i in range(self.mic_player.get_device_count()):
             device = self.mic_player.get_device_info_by_index(i)
-            if device['hostApi'] == pyaudio.paASIO:
+            if device['hostApi'] == self.cfg.get_host_api() and device['maxOutputChannels'] > 0:
                 self.audio_devices[device['name']] = device['index']
                 self.device_select.Append(device['name'])
         
@@ -171,7 +171,7 @@ class MainWindowBackend:
         frame.Bind(wx.EVT_CLOSE, self.mainwindow_close)
 
     def mainwindow_close(self, event):
-        if self.to_tray_onclose is True:
+        if self.cfg.get_tray_cfg() is True:
             event.GetEventObject().Hide()
         else:
             wx.Exit()
