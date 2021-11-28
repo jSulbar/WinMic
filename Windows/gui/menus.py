@@ -26,7 +26,7 @@ class OptionsMenu(wx.Menu):
             if host_api == HOST_APIS[key]:
                 item.Check(True)
             self.apimenu_items[key] = item
-            self.menu.Bind(wx.EVT_MENU, self._show_restart_prompt, item)
+            self.apimenu.Bind(wx.EVT_MENU, self._show_restart_prompt, item)
         self.Append(wx.ID_ANY, _('Host API'), self.apimenu)
 
     def _tray_setting(self, tray_enabled):
