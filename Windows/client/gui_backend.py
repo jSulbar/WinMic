@@ -4,7 +4,7 @@ accessing the configuration file.
 """
 import wx
 import pyaudio
-from constants import CFGKEY_TRAY, CFGKEY_LANGUAGE, AVAILABLE_LANGS
+from constants import CFGKEY_TRAY, CFGKEY_LANGUAGE, AVAILABLE_LANGS, HOST_APIS
 
 
 def parse_ctrls(ctrl_defs):
@@ -56,6 +56,19 @@ class OptionsController:
     def bind_controls(self):
         self.menu.Bind(wx.EVT_MENU, self._traycfg_event, self.menu.minimize_to_tray)
         self._langchange_bindings()
+        self._apichange_bindings()
+
+    def _apichange_bindings(self):
+        """
+        Bind host API buttons to write to the config file.
+        """
+        host_apis = self.menu.apimenu_items
+        for api in host_apis:
+            def callback(event, api=api):
+                self.cfg.Write(CFGKEY_LANGUAGE, str(HOST_APIS[api]))
+                self.cfg.Flush()
+                event.Skip()
+            self.menu.Bind(wx.EVT_MENU, callback, host_apis[api])
 
     @skip_event
     def _traycfg_event(self, event):
@@ -63,7 +76,6 @@ class OptionsController:
         Write to config when minimize to tray option is checked or unchecked.
         """
         checked = self.menu.minimize_to_tray.IsChecked()
-        self.menu.minimize_to_tray.Check(checked)
         self.cfg.Write(CFGKEY_TRAY, str(checked))
         self.cfg.Flush()
 
@@ -79,7 +91,6 @@ class OptionsController:
                 self.cfg.Write(CFGKEY_LANGUAGE, str(AVAILABLE_LANGS[lang]))
                 self.cfg.Flush()
                 event.Skip()
-            
             self.menu.Bind(wx.EVT_MENU, callback, langs[lang])
 
 

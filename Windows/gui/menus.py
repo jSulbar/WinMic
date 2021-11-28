@@ -2,7 +2,7 @@
 Menus for the main window's menu bar control.
 """
 import wx
-from constants import AVAILABLE_LANGS
+from constants import AVAILABLE_LANGS, HOST_APIS
 
 # Alias for gettext parsing
 _ = wx.GetTranslation
@@ -11,11 +11,22 @@ class OptionsMenu(wx.Menu):
     """
     Allows the user to change the program's configuration.
     """
-    def __init__(self, tray_enabled, lang):
+    def __init__(self, tray_enabled, lang, host_api):
         super().__init__()
         self.seen_prompt = False
         self._tray_setting(tray_enabled)
+        self._hostapi_menu(host_api)
         self._make_lang_menu(lang)
+
+    def _hostapi_menu(self, host_api):
+        self.apimenu = wx.Menu()
+        self.apimenu_items = {}
+        for key in HOST_APIS:
+            item = self.apimenu.AppendRadioItem(wx.ID_ANY, _(key))
+            if host_api == HOST_APIS[key]:
+                item.Check(True)
+            self.apimenu_items[key] = item
+        self.Append(wx.ID_ANY, _('Host API'), self.apimenu)
 
     def _tray_setting(self, tray_enabled):
         self.minimize_to_tray = self.AppendCheckItem(wx.ID_ANY, _('Minimize to tray on window close'))
