@@ -167,11 +167,18 @@ class MainWindowBackend:
     def stop_mic(self, event):
         self.mic_player.stop()
 
-    def bind_mainwindow_close(self, frame):
-        frame.Bind(wx.EVT_CLOSE, self.mainwindow_close)
+    def bind_mainwindow_close(self, frame, tray_icon):
+        frame.Bind(wx.EVT_CLOSE, self.mainwindow_close(tray_icon))
 
-    def mainwindow_close(self, event):
-        if self.cfg.get_tray_cfg() is True:
-            event.GetEventObject().Hide()
-        else:
-            wx.Exit()
+    def mainwindow_close(self, tray_icon):
+        """
+        Returns the event handler for the application's close.
+        """
+        def handler(event):
+            mainwindow = event.GetEventObject()
+            if self.cfg.get_tray_cfg() is True:
+                mainwindow.Hide()
+            else:
+                tray_icon.Destroy()
+                mainwindow.Destroy()
+        return handler
