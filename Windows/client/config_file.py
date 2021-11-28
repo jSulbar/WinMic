@@ -3,7 +3,7 @@ Config file creation and handling for this application.
 """
 import wx
 import os
-from constants import CFGKEY_LANGUAGE, CFGKEY_TRAY
+from constants import CFGKEY_LANGUAGE, CFGKEY_TRAY, CFGKEY_HOSTAPI
 
 class WinMicConfig(wx.FileConfig):
     """
@@ -26,6 +26,13 @@ class WinMicConfig(wx.FileConfig):
 
         if not os.path.exists(self.path):
             os.mkdir(self.path)
+    
+    def get_host_api(self):
+        """
+        Returns the configures host API that pyaudio will use for playback.
+        """
+        host_api = self.Read(CFGKEY_HOSTAPI)
+        return int(host_api)
 
     def get_language(self):
         """
