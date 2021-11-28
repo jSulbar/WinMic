@@ -4,6 +4,8 @@ accessing the configuration file.
 """
 import wx
 import pyaudio
+from constants import CFGKEY_TRAY, CFGKEY_LANGUAGE, AVAILABLE_LANGS
+
 
 def parse_ctrls(ctrl_defs):
     """
@@ -40,6 +42,45 @@ def skip_event(function):
         function(self, event)
         event.Skip()
     return func
+
+
+class OptionsController:
+    """
+    Contains the code for changing the app configuration that is needed by
+    the OptionsMenu.
+    """
+    def __init__(self, option_menu, cfg):
+        self.menu = option_menu
+        self.cfg = cfg
+
+    def bind_controls(self):
+        self.menu.Bind(wx.EVT_MENU, self._traycfg_event, self.menu.minimize_to_tray)
+        self._langchange_bindings()
+
+    @skip_event
+    def _traycfg_event(self, event):
+        """
+        Write to config when minimize to tray option is checked or unchecked.
+        """
+        checked = self.menu.minimize_to_tray.IsChecked()
+        self.menu.minimize_to_tray.Check(checked)
+        self.cfg.Write(CFGKEY_TRAY, str(checked))
+        self.cfg.Flush()
+
+    def _langchange_bindings(self):
+        """
+        Bind every button in the "Language" submenu to change the program's locale,
+        showing a prompt when it happens.
+        """
+        langs = self.menu.langmenu_items
+        for lang in langs:
+            # Define a callback that writes to the config for each button
+            def callback(event, lang=lang):
+                self.cfg.Write(CFGKEY_LANGUAGE, str(AVAILABLE_LANGS[lang]))
+                self.cfg.Flush()
+                event.Skip()
+            
+            self.menu.Bind(wx.EVT_MENU, callback, langs[lang])
 
 
 class MainWindowBackend:
