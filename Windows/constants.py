@@ -9,8 +9,8 @@ DEFAULT_PORT = 12358
 
 LOCALE_DIR_NAME = 'locale'
 AVAILABLE_LANGS = {
-    'es': wx.LANGUAGE_SPANISH,
-    'en': wx.LANGUAGE_ENGLISH
+    'Spanish': wx.LANGUAGE_SPANISH,
+    'English': wx.LANGUAGE_ENGLISH
 }
 CATALOG_NAME = 'i18n'
 
