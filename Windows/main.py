@@ -13,6 +13,7 @@ from client.mic_player import MicPlayer
 from client.winmic_app import WinMicApp
 
 from constants import APP_NAME, DEFAULT_APP_CONFIG, DEFAULT_PORT, CFG_FILENAME
+from winmic_icon import winmic_icon
 
 _ = wx.GetTranslation
 
@@ -20,7 +21,7 @@ if __name__ == '__main__':
 
     # Init wxPython app
     app = WinMicApp()
-    appicon = wx.Icon('winmic.ico')
+    appicon = wx.Icon(winmic_icon.GetIcon())
 
     # Make unresizable window, set title
     window = wx.Frame(None, style=wx.DEFAULT_FRAME_STYLE & ~(wx.RESIZE_BORDER | wx.MAXIMIZE_BOX))
