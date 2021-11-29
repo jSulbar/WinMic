@@ -1,0 +1,12 @@
+altgraph==0.17.2
+future==0.18.2
+numpy==1.21.4
+pefile==2021.9.3
+Pillow==8.4.0
+PyAudio==0.2.11
+pydub==0.25.1
+pyinstaller==4.7
+pyinstaller-hooks-contrib==2021.3
+pywin32-ctypes==0.2.0
+six==1.16.0
+wxPython==4.1.1
