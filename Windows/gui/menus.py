@@ -32,7 +32,7 @@ class OptionsMenu(wx.Menu):
         menu_items = {}
         for key in values_dict:
             item = menu.AppendRadioItem(wx.ID_ANY, key)
-            if values_dict == default_value:
+            if values_dict[key] == default_value:
                 item.Check(True)
             menu_items[key] = item
             if callback:
