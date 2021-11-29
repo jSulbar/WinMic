@@ -96,6 +96,7 @@ class MainWindowBackend:
         self.device_select = ctrls_list['device_select']
         self.startbtn = ctrls_list['start_button']
         self.stopbtn = ctrls_list['stop_button']
+        self.deepfry_check = ctrls_list['deepfry_check']
 
     def fill_control_data(self):
         """
@@ -122,6 +123,10 @@ class MainWindowBackend:
 
         self.stopbtn.Bind(wx.EVT_BUTTON, self.micbtns_toggle)
         self.stopbtn.Bind(wx.EVT_BUTTON, self.stop_mic)
+        self.deepfry_check.Bind(wx.EVT_CHECKBOX, self._toggle_deepfry)
+
+    def _toggle_deepfry(self, event):
+        self.mic_player.deepfry = not self.mic_player.deepfry
 
     @skip_event
     def micbtns_toggle(self, event):

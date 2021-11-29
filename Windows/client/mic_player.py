@@ -2,6 +2,7 @@
 # and writing it to the audio stream
 from threading import Thread
 import pyaudio
+import pydub
 
 
 # Class for microphone IO.
@@ -10,6 +11,8 @@ class MicPlayer(pyaudio.PyAudio):
         super().__init__()
         # ON/OFF flag for audio thread.
         self._running = False
+
+        self.deepfry =  False
 
         # The configuration for the audio streams 
         # this class will open.
@@ -23,7 +26,13 @@ class MicPlayer(pyaudio.PyAudio):
     def _thread_target(self, stream, socket):
         while self._running:
             audio_data = socket.recv(socket.bufsize)
-            stream.write(audio_data)
+            if self.deepfry:
+                sound = pydub.AudioSegment(data=audio_data, sample_width=1, frame_rate=8000, channels=1)
+                sound = sound + 1000
+                sound = sound - 34
+                stream.write(sound.raw_data)
+            else:
+                stream.write(audio_data)
         stream.close()
 
     def config_audio(self, *, audioformat, channels, rate):

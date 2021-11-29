@@ -24,6 +24,15 @@ MAIN_WINDOW_LAYOUT = [
             'csizer_args': (0, wx.ALL | wx.ALIGN_CENTER, 5)
         },
         {
+            'control': {
+                'class': wx.CheckBox,
+                'name': 'deepfry_check',
+                'label': 'Deep fry audio'
+            },
+            'psizer_args': (0, wx.ALIGN_CENTER | wx.ALL, 2),
+            'csizer_args': (0, wx.ALL | wx.ALIGN_CENTER, 2)
+        },
+        {
             'controls': [
                 {
                     'class': wx.Button,
