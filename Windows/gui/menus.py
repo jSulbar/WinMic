@@ -15,19 +15,29 @@ class OptionsMenu(wx.Menu):
         super().__init__()
         self.seen_prompt = False
         self._tray_setting(tray_enabled)
-        self._hostapi_menu(host_api)
-        self._make_lang_menu(lang)
-
-    def _hostapi_menu(self, host_api):
-        self.apimenu = wx.Menu()
-        self.apimenu_items = {}
-        for key in HOST_APIS:
-            item = self.apimenu.AppendRadioItem(wx.ID_ANY, _(key))
-            if host_api == HOST_APIS[key]:
-                item.Check(True)
-            self.apimenu_items[key] = item
-            self.apimenu.Bind(wx.EVT_MENU, self._show_restart_prompt, item)
+        self.apimenu, self.apimenu_items = self._menu_from_dict(HOST_APIS,
+                                                                host_api,
+                                                                self._show_restart_prompt)
+        self.langmenu, self.langmenu_items = self._menu_from_dict(AVAILABLE_LANGS,
+                                                                    lang,
+                                                                    self._show_restart_prompt)
         self.Append(wx.ID_ANY, _('Host API'), self.apimenu)
+        self.Append(wx.ID_ANY, _('Language'), self.langmenu)
+    
+    def _menu_from_dict(self, values_dict, default_value, callback = None):
+        """
+        Creates a menu with radio buttons given a dictionary.
+        """
+        menu = wx.Menu()
+        menu_items = {}
+        for key in values_dict:
+            item = menu.AppendRadioItem(wx.ID_ANY, key)
+            if values_dict == default_value:
+                item.Check(True)
+            menu_items[key] = item
+            if callback:
+                menu.Bind(wx.EVT_MENU, callback, item)
+        return menu, menu_items
 
     def _tray_setting(self, tray_enabled):
         self.minimize_to_tray = self.AppendCheckItem(wx.ID_ANY, _('Minimize to tray on window close'))
@@ -39,20 +49,4 @@ class OptionsMenu(wx.Menu):
         if not self.seen_prompt:
             wx.MessageBox(_('You will need to restart the program for this change to take effect.'))
             self.seen_prompt = True
-        event.Skip()            
-    
-    def _make_lang_menu(self, lang):
-        """
-        Makes a menu for switching the app's language. Checks the current language.
-        """
-        self.langmenu = wx.Menu()
-        self.langmenu_items = {}
-        for key in AVAILABLE_LANGS:
-            item = self.langmenu.AppendRadioItem(wx.ID_ANY, _(key))
-
-            if AVAILABLE_LANGS[key] == lang:
-                item.Check(True)
-
-            self.langmenu_items[key] = item
-            self.langmenu.Bind(wx.EVT_MENU, self._show_restart_prompt, self.langmenu_items[key])
-        self.Append(wx.ID_ANY, _('Language'), self.langmenu)
+        event.Skip()
