@@ -55,20 +55,19 @@ class OptionsController:
 
     def bind_controls(self):
         self.menu.Bind(wx.EVT_MENU, self._traycfg_event, self.menu.minimize_to_tray)
-        self._langchange_bindings()
-        self._apichange_bindings()
+        self._cfgwrite_bindings(self.menu.langmenu_items, CFGKEY_LANGUAGE, AVAILABLE_LANGS)
+        self._cfgwrite_bindings(self.menu.apimenu_items, CFGKEY_HOSTAPI, HOST_APIS)
 
-    def _apichange_bindings(self):
+    def _cfgwrite_bindings(self, submenu_items, cfgkey, submenu_dict):
         """
-        Bind host API buttons to write to the config file.
+        Write bindings for a submenu to save its changes to the config file.
         """
-        host_apis = self.menu.apimenu_items
-        for api in host_apis:
-            def callback(event, api=api):
-                self.cfg.Write(CFGKEY_HOSTAPI, str(HOST_APIS[api]))
+        for item in submenu_items:
+            def callback(event, item=item):
+                self.cfg.Write(cfgkey, str(submenu_dict[item]))
                 self.cfg.Flush()
                 event.Skip()
-            self.menu.Bind(wx.EVT_MENU, callback, host_apis[api])
+            self.menu.Bind(wx.EVT_MENU, callback, submenu_items[item])
 
     @skip_event
     def _traycfg_event(self, event):
@@ -78,20 +77,6 @@ class OptionsController:
         checked = self.menu.minimize_to_tray.IsChecked()
         self.cfg.Write(CFGKEY_TRAY, str(checked))
         self.cfg.Flush()
-
-    def _langchange_bindings(self):
-        """
-        Bind every button in the "Language" submenu to change the program's locale,
-        showing a prompt when it happens.
-        """
-        langs = self.menu.langmenu_items
-        for lang in langs:
-            # Define a callback that writes to the config for each button
-            def callback(event, lang=lang):
-                self.cfg.Write(CFGKEY_LANGUAGE, str(AVAILABLE_LANGS[lang]))
-                self.cfg.Flush()
-                event.Skip()
-            self.menu.Bind(wx.EVT_MENU, callback, langs[lang])
 
 
 class MainWindowBackend:
