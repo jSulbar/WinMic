@@ -29,7 +29,7 @@ class MicPlayer(pyaudio.PyAudio):
             if self.deepfry:
                 sound = pydub.AudioSegment(data=audio_data, sample_width=1, frame_rate=8000, channels=1)
                 sound = sound + 1000
-                sound = sound - 34
+                sound = sound - 20
                 stream.write(sound.raw_data)
             else:
                 stream.write(audio_data)
