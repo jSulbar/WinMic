@@ -3,9 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Documents/Programming stuff/Projects/Android stuff/Socket/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Documents/Programming stuff/Projects/Android stuff/Socket/app/src/main/res/layout/settings_activity.xml" value="0.25" />
-        <entry key="..\:/Users/Supreme Leader/AndroidStudioProjects/FirstApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Documents/Programming/WinMicKotlin/app/src/main/res/layout/activity_mic_control.xml" value="0.25" />
+        <entry key="..\:/Documents/Programming/WinMicKotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.12135416666666667" />
       </map>
     </option>
   </component>
