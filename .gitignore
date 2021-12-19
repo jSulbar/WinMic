@@ -93,3 +93,4 @@ venv/
 # Binaries
 *.exe
 __pycache__/
+app/
