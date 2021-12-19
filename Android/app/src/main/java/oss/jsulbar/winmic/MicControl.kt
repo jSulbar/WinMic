@@ -2,7 +2,6 @@ package oss.jsulbar.winmic
 
 import android.Manifest.permission
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -19,7 +18,6 @@ import android.widget.ToggleButton
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import java.io.Serializable
 import java.lang.Exception
 import java.net.*
 import java.util.*
@@ -93,24 +91,22 @@ internal class VoiceRecorder {
     }
 }
 
-internal class NotificationTapListener : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        val action = intent!!.action
-        if (action == Intent.)
-    }
-
-}
-
-//TODO: Pass the MicSocket starting/stopping responsability to this class.
 internal class MicForegroundService : Service() {
 
     private val CHANNEL_ID = "WinMicForeground"
+    private val WINMIC_STOP = "STOP_WINMIC"
+    private val NOTIF_ID = 12358
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        createNotificationChannel()
-        val notif = appNotification()
-        MicSocket.startRecording()
-        startForeground(12358, notif)
+        if (intent!!.action == WINMIC_STOP && MicSocket.isRecording) {
+            stopSelf()
+        }
+        else {
+            createNotificationChannel()
+            val notif = appNotification()
+            startForeground(NOTIF_ID, notif)
+            MicSocket.startRecording()
+        }
         return START_STICKY
     }
 
@@ -122,15 +118,16 @@ internal class MicForegroundService : Service() {
     // Create the notification for this foreground service.
     private fun appNotification(): Notification {
         val pendingIntent: PendingIntent =
-            Intent(this, MicControl::class.java).let { notificationIntent ->
-                PendingIntent.getActivity(this, 0, notificationIntent, 0)
+            Intent(this, MicForegroundService::class.java).let { notificationIntent ->
+                notificationIntent.setAction(WINMIC_STOP)
+                PendingIntent.getService(this, 0, notificationIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT)
             }
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.servicenotif_title))
             .setContentText(getString(R.string.servicenotif_text))
             .setSmallIcon(R.mipmap.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
             .build()
     }
 
@@ -151,13 +148,13 @@ internal class MicForegroundService : Service() {
     }
 
     override fun onBind(intent: Intent?): IBinder? {
-        TODO("Sorry nothing")
+        return null
     }
 }
 
 object MicSocket {
 
-    private var input: VoiceRecorder? = null
+    private var recorder: VoiceRecorder? = null
     private var socket: SocketInstance? = null
 
     // Populate objects
@@ -167,7 +164,7 @@ object MicSocket {
                 stopRecording()
             }
             socket = SocketInstance(ipAddress)
-            input = VoiceRecorder()
+            recorder = VoiceRecorder()
         }
         catch (e: Exception) {
             Log.e("jSulbar", e.toString())
@@ -176,36 +173,42 @@ object MicSocket {
 
     // Keep track of recording
     var isRecording = false
+    var micThread: Thread? = null
 
-    // Thread that sends packets while recording.
-    private val sendMicAudio: Thread = object : Thread() {
-        override fun run() {
-            input!!.startRecording()
-            while (isRecording) {
-                val buffer: ByteArray = input!!.readAudioBytes()
-                socket!!.sendPacket(buffer)
+    // Create a thread to send audio packets from the mic's data.
+    // Threads can only be used once, so this is called whenever a recording starts.
+    private fun createMicThread() : Thread {
+        val micThread = object : Thread() {
+            override fun run() {
+                recorder!!.startRecording()
+                while (isRecording) {
+                    val buffer: ByteArray = recorder!!.readAudioBytes()
+                    socket!!.sendPacket(buffer)
+                }
+                recorder!!.stopRecording()
             }
         }
+        return micThread
     }
 
     // Set isRecording to true, start mic
     // and send its audio through socket
     fun startRecording() {
-        if (input == null || isRecording) {
+        if (recorder == null || isRecording) {
             return
         }
         isRecording = true
-        sendMicAudio.start()
+        micThread = createMicThread()
+        micThread!!.start()
     }
 
     // Stop mic processes
     fun stopRecording() {
         Log.d("jSulbar", "Stopped sending")
-        if (input == null || !isRecording) {
+        if (!isRecording) {
             return
         }
         isRecording = false
-        input!!.stopRecording()
     }
 }
 
@@ -228,7 +231,7 @@ class MicControl : AppCompatActivity() {
 
     private fun stopMic() {
         Log.d("jSulbar", "Pressed end")
-        // Stop recording and delete mic instance
+        // Stop recording
         stopService(foregroundServiceIntent)
     }
 
@@ -264,10 +267,16 @@ class MicControl : AppCompatActivity() {
             }
         }
 
+    // Disable togglebutton if the mic was turned off from outside the app
+    override fun onResume() {
+        super.onResume()
+        val toggle = findViewById<ToggleButton>(R.id.mic_togglebutton)
+        toggle.isChecked = MicSocket.isRecording
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mic_control)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         foregroundServiceIntent = Intent(this, MicForegroundService::class.java)
 
