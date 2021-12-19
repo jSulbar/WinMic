@@ -8,5 +8,6 @@ CD pyinstaller_build
 pyinstaller ..\main.py --onedir -n WinMic --clean -i ..\winmic.ico --noconsole --noconfirm --runtime-hook ..\hook.py
 CD ..
 py cleanup_dir.py
+ROBOCOPY locale\ .\pyinstaller_build\dist\WinMic\ /COPYALL /E
 deactivate
 PAUSE
