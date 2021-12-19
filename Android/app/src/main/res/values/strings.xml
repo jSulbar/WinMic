@@ -2,4 +2,9 @@
     <string name="app_name">WinMic</string>
     <string name="ipinput_hint">Your PC\'s IP here</string>
     <string name="micbutton_label_start">Start mic</string>
+
+    <string name="servicenotif_channel">WinMic Service</string>
+    <string name="servicenotif_title">WinMic is running</string>
+    <string name="servicenotif_text">Tap this notification to stop</string>
+    <string name="servicenotif_description">Notification for WinMic\'s foreground service</string>
 </resources>
