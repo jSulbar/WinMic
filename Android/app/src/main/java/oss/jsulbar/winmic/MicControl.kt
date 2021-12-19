@@ -254,11 +254,6 @@ class MicControl : AppCompatActivity() {
             if (isChecked) {
                 if (!hasMicPerms()) {
                     requestMicPerms()
-                    if (hasMicPerms()) {
-                        startMic()
-                    } else {
-                        buttonView.isChecked = false
-                    }
                 } else {
                     startMic()
                 }
